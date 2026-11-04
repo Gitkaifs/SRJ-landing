@@ -84,14 +84,25 @@
       color: var(--teal-900);
     }
     .tagline strong { color: var(--accent); font-weight: 700; }
-    .assoc {
+    .tagline {
+      margin-top: min(1.4rem, 2.6vh);
+      font-size: clamp(1.1rem, 3vh, 1.6rem);
+      font-weight: 500;
+    }
+    .tagline strong { color: var(--accent); font-weight: 700; }
+    .note {
       margin-top: min(.5rem, 1vh);
-      font-size: min(.85rem, 2vh);
-      letter-spacing: .04em;
-      color: var(--teal-700);
+      font-size: clamp(.9rem, 2.2vh, 1.05rem);
       opacity: .75;
     }
-    .assoc em { font-style: normal; font-weight: 500; }
+    .assoc {
+      margin-top: min(.9rem, 1.6vh);
+      font-size: clamp(1rem, 2.8vh, 1.4rem);
+      letter-spacing: .02em;
+      color: var(--teal-900);
+      opacity: .9;
+    }
+    .assoc em { font-style: normal; font-weight: 700; color: var(--teal-700); }
     .note {
       margin-top: min(1rem, 1.5vh);
       max-width: 34rem;
@@ -101,33 +112,29 @@
     }
 
     .contact {
-      margin-top: min(2rem, 3vh);
-      display: grid;
-      gap: min(.8rem, 1.5vh);
-      max-width: 34rem;
-    }
-    .contact a, .contact address {
-      display: flex;
-      align-items: flex-start;
-      gap: .9rem;
-      padding: min(.9rem, 1.6vh) 1.1rem;
+      margin-top: min(1.6rem, 3vh);
+      max-width: 30rem;
       background: #fff;
       border: 1px solid var(--teal-100);
-      border-radius: 14px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(6,60,64,.08);
+      overflow: hidden;
+    }
+    .contact a {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: min(.9rem, 1.8vh) 1.2rem;
       color: inherit;
       text-decoration: none;
-      font-style: normal;
-      line-height: 1.45;
-      transition: transform .15s, box-shadow .15s;
+      line-height: 1.4;
+      transition: background .15s;
     }
-    .contact a:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(11,84,87,.12);
-    }
+    .contact a + a { border-top: 1px solid var(--teal-100); }
+    .contact a:hover { background: var(--teal-50); }
     .contact svg {
       flex: none;
       width: 1.4rem; height: 1.4rem;
-      margin-top: .1rem;
       stroke: var(--teal-700);
       fill: none;
       stroke-width: 1.8;
@@ -142,6 +149,7 @@
       opacity: .6;
     }
 
+    .visual { min-height: 0; }
     .visual img {
       width: auto;
       max-width: 100%;
@@ -161,10 +169,31 @@
     }
 
     @media (max-width: 860px) {
-      .hero { grid-template-columns: 1fr; }
-      .visual { display: none; }
-      .note { display: none; }
-      .contact a, .contact address { font-size: .9rem; }
+      .hero {
+        grid-template-columns: 1fr;
+        grid-template-rows: minmax(0, 1fr) auto;
+        gap: .8rem;
+        padding: .8rem 1rem;
+        text-align: center;
+      }
+      /* poster already carries the name + tagline, so show it instead of the text heading */
+      .visual { order: -1; min-height: 0; height: 100%; }
+      .visual img {
+        width: 100%;
+        height: 100%;
+        max-height: none;
+        object-fit: contain;
+        border-radius: 16px;
+        box-shadow: 0 12px 30px rgba(6,60,64,.2);
+      }
+      h1, .tagline, .note { display: none; }
+      .badge { font-size: .8rem; padding: .4rem 1rem; margin-bottom: .4rem; }
+      .assoc { margin-top: 0; font-size: 1rem; }
+      .contact { margin: .6rem auto 0; text-align: left; width: 100%; }
+      .contact a { padding: .5rem .8rem; gap: .7rem; font-size: .82rem; line-height: 1.3; }
+      .contact small { font-size: .6rem; }
+      .contact svg { width: 1.1rem; height: 1.1rem; }
+      footer { font-size: .7rem; padding: .5rem; }
     }
   </style>
 </head>
@@ -173,12 +202,9 @@
     <section>
       <span class="badge">Coming Soon</span>
       <h1>SRJ<br />Hospital</h1>
-      <p class="tagline">Indore, it's time to <strong>Live Forward.</strong></p>
       <p class="assoc">In association with <em>DNS Hospital</em></p>
-      <p class="note">
-        We're getting our new website ready. Until then, reach out to us
-        directly. Our team is happy to help.
-      </p>
+      <p class="tagline">Indore, it's time to <strong>Live Forward.</strong></p>
+      <p class="note">Our new website is on its way. Until then, reach us here.</p>
 
       <div class="contact">
         <a href="tel:+917313113113">
